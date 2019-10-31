@@ -17,7 +17,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" scoped>
 h1 {
-    font-size: 50px;
+    font-size: 0.5rem;
     color: red;
 }
 </style>
