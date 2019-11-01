@@ -33,7 +33,4 @@ export default new Vuex.Store({
         tags: state => state.tags
 
     },
-    actions: {
-        
-    }
 })

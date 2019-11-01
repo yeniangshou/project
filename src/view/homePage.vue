@@ -10,6 +10,26 @@ export default {
   data () {
     return {
     }
+  },
+  created(){
+      this.testInterface();
+  },
+  methods: {
+      testInterface() {
+          this.$axios.get('/user/logininfo', {
+                params: {
+                   src: 'pc',
+                   page: 'searchresult',
+                   time: '1572593168797'
+                }
+            })
+            .then( (response) => {
+                console.log(response);
+            })
+            .catch( (error) => {
+                console.log(error);
+            });
+      }
   }
 }
 </script>
