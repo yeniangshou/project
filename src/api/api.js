@@ -2,9 +2,11 @@ import axios from 'axios'
 import vue from 'vue'
 // import qs from 'qs'
 
+console.log('process.env', process.env) 
+
 const instance = axios.create({
     // 这个是接口开发环境还是生产环境的配置地址
-    baseURL: process.NODE_ENV == 'development'?'http://image.baidu.com/' : 'http://image.baidu.com/',
+    // baseURL: process.env.NODE_ENV == 'development'?'http://image.baidu.com/' : 'http://image.baidu.prod.com/',
     timeout: 10000,
     // transformRequest: data => qs.stringify(data)
 });

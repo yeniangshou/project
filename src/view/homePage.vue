@@ -12,15 +12,16 @@ export default {
     }
   },
   created(){
+      console.log();
       this.testInterface();
   },
   methods: {
       testInterface() {
-          this.$axios.get('/user/logininfo', {
-                params: {
-                   src: 'pc',
-                   page: 'searchresult',
-                   time: '1572593168797'
+          this.$axios({
+                methods: 'post',
+                url: '/portal/r/jd?cmd=com.actionsoft.apps.walmart.portal_get_mportal_nav',
+                data: {
+                    sid: 'nosid',
                 }
             })
             .then( (response) => {
@@ -29,6 +30,17 @@ export default {
             .catch( (error) => {
                 console.log(error);
             });
+        //   this.$axios.get('/portal/r/jd?cmd=com.actionsoft.apps.walmart.portal_get_mportal_nav', {
+        //         params: {
+        //           sid: 'nosid'
+        //         }
+        //     })
+        //     .then( (response) => {
+        //         console.log(response);
+        //     })
+        //     .catch( (error) => {
+        //         console.log(error);
+        //     });
       }
   }
 }
