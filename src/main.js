@@ -3,16 +3,18 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import aixos from './api/api'
+import api from './api/index'
 import store from './store/store'
 import elementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import i18n from './i18n/index'
 import echarts from 'echarts'
+import cookie from 'vue-cookie'
 
-Vue.prototype.$axios = aixos
 Vue.prototype.$echarts = echarts
 Vue.config.productionTip = false
+Vue.prototype.$cookie = cookie
+Vue.prototype.$api = api
 Vue.use(elementUI)
 
 // 屏幕做rem 自适应配置

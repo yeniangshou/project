@@ -1,14 +1,18 @@
 import axios from 'axios'
 import vue from 'vue'
-// import qs from 'qs'
+import Qs from 'Qs' 
 
-console.log('process.env', process.env) 
-
+// 
 const instance = axios.create({
     // 这个是接口开发环境还是生产环境的配置地址
-    // baseURL: process.env.NODE_ENV == 'development'?'http://image.baidu.com/' : 'http://image.baidu.prod.com/',
+    // baseURL: process.env.API_ROOT,
+    // 超时
     timeout: 10000,
-    // transformRequest: data => qs.stringify(data)
+    // 设置请求头
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' 
+    },
+    transformRequest: data => Qs.stringify(data)
 });
 
 // 存储所有的请求标致和拒绝请求的方法
@@ -49,5 +53,39 @@ instance.interceptors.response.use(function (response) {
     return Promise.reject(error);
 });
 
-// 最后输出axios,准备将其放入vue的原型中
-export default instance;
+// 配置axios发送请求getf方法
+export function get (url, params) {
+    return new Promise((resolve, reject) => {
+        instance
+      .get(url, {
+       params: params
+      })
+      .then(res => {
+       resolve(res.data)
+      })
+      .catch(err => {
+       reject(err.data)
+      })
+    })
+   }
+
+   export function post (url, params) {
+    return new Promise((resolve, reject) => {
+    instance
+      .post(url, params)
+      .then(
+       res => {
+        resolve(res.data)
+       },
+       err => {
+        reject(err.data)
+       }
+      )
+      .catch(err => {
+       reject(err.data)
+      })
+    })
+   }
+
+// 最后输出axios,准备将其放入vue的原型中,简单的方式
+//export default instance;
