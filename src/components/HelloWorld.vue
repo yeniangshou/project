@@ -85,7 +85,7 @@
 </template>
 
 <script>
-import { resolve } from 'q';
+import { resolve } from 'q'
 export default {
   name: 'HelloWorld',
   data () {
@@ -93,45 +93,44 @@ export default {
       msg: 'Welcome to Your Vue.js App'
     }
   },
-  created(){
-    this.testAsync();
+  created () {
+    this.testAsync()
     // 输出 Promise {<resolved>: undefined}
     // __proto__: Promise
     // [[PromiseStatus]]: "resolved"
     // [[PromiseValue]]: undefined
-    console.log(this.getResolve());
+    console.log(this.getResolve())
   },
   methods: {
-      // async 返回一个promise对象，需要使用then的注册输出返回值，然后这里是个异步操作
-      async testAsync(){
-          // 在这里两个接口查看异步操作之间顺序和结果
-          // await这里等待promise的值得返回reolve，在执行下面的值
-          var d = await new Promise(function(resolve, reject){
-              console.log(1);
-              setTimeout(() => {
-                  // 这里就可以返回接口的结果值
-                    resolve(3) 
-              }, 1);
-            //  resolve(3)
-          })
-          var f = await new Promise(function(resolve, reject){
-              setTimeout(() => {
-                  // 这里就可以返回接口的结果值
-                    resolve(4) 
-              }, 1);
-            //  resolve(3)
-          })
-          // 这里明显是先输出3，然后再输出4
-          console.log(d);
-          console.log(f);
-          console.log(555);
-         
-      },
-      async getResolve(){
-           setTimeout(() => {
-                return '3'
-            }, 1);
-      }
+    // async 返回一个promise对象，需要使用then的注册输出返回值，然后这里是个异步操作
+    async testAsync () {
+      // 在这里两个接口查看异步操作之间顺序和结果
+      // await这里等待promise的值得返回reolve，在执行下面的值
+      var d = await new Promise(function (resolve, reject) {
+        console.log(1)
+        setTimeout(() => {
+          // 这里就可以返回接口的结果值
+          resolve(3)
+        }, 1)
+        //  resolve(3)
+      })
+      var f = await new Promise(function (resolve, reject) {
+        setTimeout(() => {
+          // 这里就可以返回接口的结果值
+          resolve(4)
+        }, 1)
+        //  resolve(3)
+      })
+      // 这里明显是先输出3，然后再输出4
+      console.log(d)
+      console.log(f)
+      console.log(555)
+    },
+    async getResolve () {
+      setTimeout(() => {
+        return '3'
+      }, 1)
+    }
   }
 }
 </script>

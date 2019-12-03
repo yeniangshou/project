@@ -1,7 +1,7 @@
 const zh = {
-    person: {
-        name: '叶sir'
-    }
+  person: {
+    name: '叶sir'
+  }
 }
 
-export default zh;
+export default zh

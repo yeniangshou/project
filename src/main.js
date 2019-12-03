@@ -10,6 +10,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import i18n from './i18n/index'
 import echarts from 'echarts'
 import cookie from 'vue-cookie'
+import 'babel-polyfill'
 
 Vue.prototype.$echarts = echarts
 Vue.config.productionTip = false
@@ -19,35 +20,33 @@ Vue.prototype.$api = api
 Vue.use(elementUI)
 
 // 屏幕做rem 自适应配置
-;(function(win) {
-    var tid;
-    function refreshRem() {
-        let designSize = 1349; // 设计图尺寸
-        let html = document.documentElement;
-        let wW = html.clientWidth;// 窗口宽度
-        let rem = wW * 100 / designSize; 
-        document.documentElement.style.fontSize = rem + 'px';
+;(function (win) {
+  var tid
+  function refreshRem () {
+    let designSize = 1349 // 设计图尺寸
+    let html = document.documentElement
+    let wW = html.clientWidth// 窗口宽度
+    let rem = wW * 100 / designSize
+    document.documentElement.style.fontSize = rem + 'px'
+  }
+
+  win.addEventListener('resize', function () {
+    clearTimeout(tid)
+    tid = setTimeout(refreshRem, 300)
+  }, false)
+  win.addEventListener('pageshow', function (e) {
+    if (e.persisted) {
+      clearTimeout(tid)
+      tid = setTimeout(refreshRem, 300)
     }
- 
-    win.addEventListener('resize', function() {
-        clearTimeout(tid);
-        tid = setTimeout(refreshRem, 300);
-    }, false);
-    win.addEventListener('pageshow', function(e) {
-        if (e.persisted) {
-            clearTimeout(tid);
-            tid = setTimeout(refreshRem, 300);
-        }
-    }, false);
+  }, false)
 
-    refreshRem();
-
-})(window);
-
+  refreshRem()
+})(window)
 
 /* eslint-disable no-new */
 new Vue({
-    i18n,
+  i18n,
   el: '#app',
   router,
   store,

@@ -12,16 +12,16 @@
                 active-text-color="#ffd04b"
                 @open="handleOpen"
                 @close="handleClose">
-                
+
                 <aside-nav v-for="item in routes" :key="item.path" :items="item" :basePath="item.path"></aside-nav>
-                
+
             </el-menu>
         </el-aside>
         <el-main>
             <tabview></tabview>
             <keep-alive>
               <router-view :key="key"></router-view>
-            </keep-alive> 
+            </keep-alive>
         </el-main>
       </el-container>
   </div>
@@ -35,27 +35,27 @@ export default {
   name: 'layout',
   data () {
     return {
-        // 得到所有路由的菜单
-        routes: []
+      // 得到所有路由的菜单
+      routes: []
     }
   },
   computed: {
-       key() {
-            return this.$route.path
-        }
+    key () {
+      return this.$route.path
+    }
   },
-  created(){
-      this.routes = this.$router.options.routes
-      Vue.component('aside-nav', asideNav);
-      Vue.component('tabview', tabview);
+  created () {
+    this.routes = this.$router.options.routes
+    Vue.component('aside-nav', asideNav)
+    Vue.component('tabview', tabview)
   },
   methods: {
-        handleOpen(key, keyPath) {
-        console.log(key, keyPath);
-      },
-      handleClose(key, keyPath) {
-        console.log(key, keyPath);
-      }
+    handleOpen (key, keyPath) {
+      console.log(key, keyPath)
+    },
+    handleClose (key, keyPath) {
+      console.log(key, keyPath)
+    }
   }
 }
 </script>

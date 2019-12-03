@@ -1,7 +1,7 @@
 const en = {
-   person: {
+  person: {
     name: 'Ben'
-   }
+  }
 }
 
-export default en;
+export default en

@@ -14,7 +14,7 @@
                 <i class="el-icon-location"></i>
                 <span>{{ items.meta.title }}</span>
          </template>
-        
+
         <el-menu-item-group :index="child.path" :key="child.path" v-for="child in items.children">
             <router-link v-if="!child.children" :to="resolvePath(child.path)">
                 <el-menu-item :index="child.path">
@@ -22,10 +22,10 @@
                 </el-menu-item>
             </router-link>
             <!-- 三级以上菜单 -->
-            <aside-nav v-else 
+            <aside-nav v-else
                 :key="child.path" :items="child" :basePath="resolvePath(child.path)">
             </aside-nav>
-        </el-menu-item-group> 
+        </el-menu-item-group>
     </el-submenu>
   </div>
 </template>
@@ -36,24 +36,24 @@ export default {
   name: 'layout',
   data () {
     return {
-        // 得到所有路由的菜单
-        routes: []
+      // 得到所有路由的菜单
+      routes: []
     }
   },
   props: {
-      items: {
-          type: Object,
-          default: {}
-      },
-      basePath: {
-          type: String,
-          default: ''
-      }
+    items: {
+      type: Object,
+      default: {}
+    },
+    basePath: {
+      type: String,
+      default: ''
+    }
   },
   methods: {
-    resolvePath(routePath) {
-        return path.resolve(this.basePath, routePath)
-    },
+    resolvePath (routePath) {
+      return path.resolve(this.basePath, routePath)
+    }
   }
 }
 </script>

@@ -1,7 +1,7 @@
 import { post, get } from './api'
 
 export default {
-  loginAPI(params) {
+  loginAPI (params) {
     return post('/portal/r/jd', params)
   }
 }

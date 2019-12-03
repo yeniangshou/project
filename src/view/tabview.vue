@@ -16,36 +16,36 @@ import {mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'tabview',
   computed: {
-      ...mapGetters(['tags'])
+    ...mapGetters(['tags'])
   },
-  watch:{
-    $route(){
-        this.addTags(this.$route);
+  watch: {
+    $route () {
+      this.addTags(this.$route)
     }
   },
-  created(){
-    this.addTags(this.$route);
+  created () {
+    this.addTags(this.$route)
   },
   methods: {
     ...mapMutations(['addTags', 'delTag']),
-    handleClose(tag) {
-        this.delTag(tag);
-        if(this.isActive(tag)){
-            const lastTag  = this.tags.splice(-1)[0];
+    handleClose (tag) {
+      this.delTag(tag)
+      if (this.isActive(tag)) {
+        const lastTag = this.tags.splice(-1)[0]
 
-            if(lastTag){
-                this.$router.push(lastTag.path);
-            } else {
-                this.$router.push('/layout');
-            }
+        if (lastTag) {
+          this.$router.push(lastTag.path)
+        } else {
+          this.$router.push('/layout')
         }
+      }
     //    this.dynamicTags.splice(this.dynamicTags.indexOf(tag), 1);
     },
-    isActive(tag){
-        if(tag.name == this.$route.name){
-            return true
-        }
-        return false;
+    isActive (tag) {
+      if (tag.name == this.$route.name) {
+        return true
+      }
+      return false
     }
   }
 }
@@ -59,7 +59,6 @@ h1 {
 }
 
 .isActive {
-   
 
     .el-tag {
          color: red;
