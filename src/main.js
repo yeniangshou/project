@@ -13,6 +13,7 @@ import cookie from 'vue-cookie'
 
 Vue.prototype.$echarts = echarts
 Vue.config.productionTip = false
+// 设置cookie
 Vue.prototype.$cookie = cookie
 Vue.prototype.$api = api
 Vue.use(elementUI)
