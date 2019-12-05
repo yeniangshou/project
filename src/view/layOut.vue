@@ -32,28 +32,28 @@ import Vue from 'vue'
 import asideNav from './asideNav'
 import tabview from './tabview'
 export default {
-  name: 'layout',
-  data () {
+  name: 'Layout',
+  data() {
     return {
       // 得到所有路由的菜单
       routes: []
     }
   },
   computed: {
-    key () {
+    key() {
       return this.$route.path
     }
   },
-  created () {
+  created() {
     this.routes = this.$router.options.routes
     Vue.component('aside-nav', asideNav)
     Vue.component('tabview', tabview)
   },
   methods: {
-    handleOpen (key, keyPath) {
+    handleOpen(key, keyPath) {
       console.log(key, keyPath)
     },
-    handleClose (key, keyPath) {
+    handleClose(key, keyPath) {
       console.log(key, keyPath)
     }
   }

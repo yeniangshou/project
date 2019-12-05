@@ -22,8 +22,11 @@
                 </el-menu-item>
             </router-link>
             <!-- 三级以上菜单 -->
-            <aside-nav v-else
-                :key="child.path" :items="child" :basePath="resolvePath(child.path)">
+            <aside-nav
+v-else
+                :key="child.path"
+:items="child"
+:basePath="resolvePath(child.path)">
             </aside-nav>
         </el-menu-item-group>
     </el-submenu>
@@ -33,8 +36,8 @@
 <script>
 import path from 'path'
 export default {
-  name: 'layout',
-  data () {
+  name: 'Layout',
+  data() {
     return {
       // 得到所有路由的菜单
       routes: []
@@ -51,7 +54,7 @@ export default {
     }
   },
   methods: {
-    resolvePath (routePath) {
+    resolvePath(routePath) {
       return path.resolve(this.basePath, routePath)
     }
   }

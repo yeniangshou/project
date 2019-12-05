@@ -9,7 +9,7 @@ export default new Vuex.Store({
     tags: []
   },
   mutations: {
-    addTags (state, view) {
+    addTags(state, view) {
       if (state.tags.length > 0) {
         if (state.tags.find((tag) => {
           return tag.path == view.path
@@ -17,10 +17,10 @@ export default new Vuex.Store({
           return false
         }
       }
-      state.tags.push({name: view.name, path: view.path})
+      state.tags.push({ name: view.name, path: view.path })
     },
-    delTag (state, view) {
-      for (let [i, v] of state.tags.entries()) {
+    delTag(state, view) {
+      for (const [i, v] of state.tags.entries()) {
         if (v.path === view.path) {
           state.tags.splice(i, 1)
         }

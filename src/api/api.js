@@ -2,26 +2,33 @@ import axios from 'axios'
 import vue from 'vue'
 import Qs from 'Qs'
 
-//
+// 计算baseUrl,代理时根据api进行，所以如果具体的协议和域名就不会进行拦截了
+let baseUrl = '/portal'
+if (process.env.NODE_ENV === 'production') {
+  baseUrl = window.location.protocol + '//' + window.location.host
+}
+
+// 配置axios
 const instance = axios.create({
   // 这个是接口开发环境还是生产环境的配置地址
-  // baseURL: process.env.API_ROOT,
+  baseURL: baseUrl,
   // 超时
   timeout: 10000,
   // 设置请求头
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
   },
+  // 将请求数据转为json
   transformRequest: data => Qs.stringify(data)
 })
 
 // 存储所有的请求标致和拒绝请求的方法
-let pending = []
+const pending = []
 // 这个是控制取消请求的
-let cancelToken = axios.CancelToken
+const CancelToken = axios.CancelToken
 // 检查且删掉同样的请求
-let removePending = config => {
-  for (let p in pending) {
+const removePending = config => {
+  for (const p in pending) {
     if (pending[p].u === config.url + '&' + config.method) {
       // 当前请求在数组中存在时，执行函数体
       pending[p].f() // 执行取消操作
@@ -31,29 +38,29 @@ let removePending = config => {
 }
 
 // 请求拦截器
-instance.interceptors.request.use(function (config) {
+instance.interceptors.request.use(function(config) {
   removePending(config) // 在一个ajax发送前执行一下取消操作
-  config.cancelToken = new cancelToken(c => {
-    pending.push({u: config.url + '&' + config.method, f: c})
+  config.cancelToken = new CancelToken(c => {
+    pending.push({ u: config.url + '&' + config.method, f: c })
   })
   return config
-}, function (error) {
+}, function(error) {
   return Promise.reject(error)
 })
 
 // 响应拦截器
-instance.interceptors.response.use(function (response) {
+instance.interceptors.response.use(function(response) {
   // 在一个ajax响应后再执行一下取消操作，把已经完成的请求从pending中删除
   removePending(response.config)
   return response
-}, function (error) {
+}, function(error) {
   vue.prototype.$loading().close()
   // 对响应错误做点什么
   return Promise.reject(error)
 })
 
 // 配置axios发送请求getf方法
-export function get (url, params) {
+export function get(url, params) {
   return new Promise((resolve, reject) => {
     instance
       .get(url, {
@@ -68,7 +75,8 @@ export function get (url, params) {
   })
 }
 
-export function post (url, params) {
+// post的axios请求
+export function post(url, params) {
   return new Promise((resolve, reject) => {
     instance
       .post(url, params)

@@ -10,27 +10,18 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    // 测试成功的例子
-//     proxyTable: {
-//       '/api': {
-//         target: 'http://api.douban.com/v2', // 接口的域名
-//         // secure: false,  // 如果是https接口，需要配置这个参数
-//         changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
-//         pathRewrite: {
-//           '^/api': ''       //这是一个通配符，设置完了之后每个接口都要在前面加上/api（特别注意这一点）
-//         }
-//       }
-//     },
-        proxyTable: {
-          '/portal': { // 进行拦截，进行服务器帮你访问
-            target: 'https://qa-bpms.walmartmobile.cn', // 接口的域名
-             secure: false,  // 如果是https接口，需要配置这个参数
-            changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
-            pathRewrite: {
-              '^/portal': ''       //这是一个通配符，设置完了之后每个接口都要在前面加上/api（特别注意这一点）
-            }
-          }
-        },
+    // 配置相关的代理，利用nodejs生成虚拟的服务器，实现跨域
+    proxyTable: {  
+      '/portal': {  //代理地址  
+          target: 'http://lcnnt59008.cn.wal-mart.com:8080/',  //需要代理的地址  
+          changeOrigin: true,  //是否跨域  
+          secure: false,    
+          pathRewrite: {  
+              '^/portal': '/portal'   //本身的接口地址没有 '/api' 这种通用前缀，所以要rewrite，如果本身有则去掉  
+          }
+      }
+  },
+
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined

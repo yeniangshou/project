@@ -6,12 +6,12 @@
 
 <script>
 export default {
-  name: 'layout',
-  data () {
+  name: 'Layout',
+  data() {
     return {
     }
   },
-  created () {
+  created() {
 
   },
   methods: {

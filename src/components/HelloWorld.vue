@@ -88,12 +88,12 @@
 import { resolve } from 'q'
 export default {
   name: 'HelloWorld',
-  data () {
+  data() {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
   },
-  created () {
+  created() {
     this.testAsync()
     // 输出 Promise {<resolved>: undefined}
     // __proto__: Promise
@@ -103,10 +103,10 @@ export default {
   },
   methods: {
     // async 返回一个promise对象，需要使用then的注册输出返回值，然后这里是个异步操作
-    async testAsync () {
+    async testAsync() {
       // 在这里两个接口查看异步操作之间顺序和结果
       // await这里等待promise的值得返回reolve，在执行下面的值
-      var d = await new Promise(function (resolve, reject) {
+      var d = await new Promise(function(resolve, reject) {
         console.log(1)
         setTimeout(() => {
           // 这里就可以返回接口的结果值
@@ -114,7 +114,7 @@ export default {
         }, 1)
         //  resolve(3)
       })
-      var f = await new Promise(function (resolve, reject) {
+      var f = await new Promise(function(resolve, reject) {
         setTimeout(() => {
           // 这里就可以返回接口的结果值
           resolve(4)
@@ -126,7 +126,7 @@ export default {
       console.log(f)
       console.log(555)
     },
-    async getResolve () {
+    async getResolve() {
       setTimeout(() => {
         return '3'
       }, 1)

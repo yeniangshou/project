@@ -1,11 +1,11 @@
 {
-  "name": "houtai-project",
+  "name": "project4",
   "version": "1.0.0",
   "description": "A Vue.js project",
-  "author": "Jack Chen <vn0rm2r@email.wal-mart.com>",
+  "author": "",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --open --inline --progress --config build/webpack.dev.conf.js",
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "unit": "jest --config test/unit/jest.conf.js --coverage",
     "e2e": "node test/e2e/runner.js",
@@ -15,16 +15,17 @@
   },
   "dependencies": {
     "axios": "^0.19.0",
-    "echarts": "^4.4.0",
-    "element-ui": "^2.12.0",
-    "i18n": "^0.8.4",
+    "element-ui": "^2.13.0",
+    "font-awesome": "^4.7.0",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
+    "normalize.css": "^8.0.1",
+    "style-loader": "^1.0.0",
     "vue": "^2.5.2",
     "vue-cookie": "^1.1.4",
     "vue-i18n": "^8.15.0",
     "vue-router": "^3.0.1",
-    "vuex": "^3.1.1"
+    "vuex": "^3.1.2"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -38,7 +39,6 @@
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.22.0",
     "babel-plugin-transform-vue-jsx": "^3.5.0",
-    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.3.2",
     "babel-preset-stage-2": "^6.22.0",
     "babel-register": "^6.22.0",

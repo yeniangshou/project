@@ -1,7 +1,7 @@
-import { post, get } from './api'
+import { post } from './api'
 
 export default {
-  loginAPI (params) {
-    return post('/portal/r/jd', params)
+  loginAPI(params) {
+    return post('/r/jd', params)
   }
 }

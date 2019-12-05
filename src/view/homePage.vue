@@ -6,20 +6,20 @@
 
 <script>
 export default {
-  name: 'layout',
-  data () {
+  name: 'Layout',
+  data() {
     return {
     }
   },
-  created () {
+  created() {
     console.log()
-    let token = 'aaa'
+    const token = 'aaa'
     // 1 代表过期时间是1天
     this.$cookie.set('tooken', token, 1)
     this.testInterface()
   },
   methods: {
-    testInterface () {
+    testInterface() {
       var params = {
         userid: '5476',
         pwd: '18ed9e5f94b114f658dee20b46c34c88d0c5a63dd36b356d7a94172a9c7c07304c8741415bdbbbe18b31b140ff98a124d770aeb523505433b5007a3729626a65cef9188ac1ed1bd7428fd8b42f859a37488dd2d2c88afd79149b665aff22db12d68899245b3a63020df7c2852ed8b542b21f2387bb59609f1f85d8215acf7837',

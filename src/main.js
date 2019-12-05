@@ -4,52 +4,32 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import api from './api/index'
-import store from './store/store'
-import elementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
+import 'font-awesome/css/font-awesome.min.css'
+import vuex from './store/store'
+// Normalize.css是一种CSS reset的替代方案
+import 'normalize.css/normalize.css'
 import i18n from './i18n/index'
-import echarts from 'echarts'
+import elementUI from 'element-ui'
 import cookie from 'vue-cookie'
-import 'babel-polyfill'
+import 'element-ui/lib/theme-chalk/index.css'
 
-Vue.prototype.$echarts = echarts
-Vue.config.productionTip = false
-// 设置cookie
-Vue.prototype.$cookie = cookie
+// 这里重点，elementUI 进行中英文切换
+Vue.use(elementUI, {
+  i18n: (key, value) => i18n.t(key, value)
+})
+// 这里时使用aixos集合，重点
 Vue.prototype.$api = api
-Vue.use(elementUI)
+Vue.config.productionTip = false
 
-// 屏幕做rem 自适应配置
-;(function (win) {
-  var tid
-  function refreshRem () {
-    let designSize = 1349 // 设计图尺寸
-    let html = document.documentElement
-    let wW = html.clientWidth// 窗口宽度
-    let rem = wW * 100 / designSize
-    document.documentElement.style.fontSize = rem + 'px'
-  }
-
-  win.addEventListener('resize', function () {
-    clearTimeout(tid)
-    tid = setTimeout(refreshRem, 300)
-  }, false)
-  win.addEventListener('pageshow', function (e) {
-    if (e.persisted) {
-      clearTimeout(tid)
-      tid = setTimeout(refreshRem, 300)
-    }
-  }, false)
-
-  refreshRem()
-})(window)
+// 设置cookie set  get  delete 方法  this.$cookie.set('token', token, 1)
+Vue.prototype.$cookie = cookie
 
 /* eslint-disable no-new */
 new Vue({
-  i18n,
   el: '#app',
   router,
-  store,
+  i18n,
+  vuex,
   components: { App },
   template: '<App/>'
 })

@@ -12,23 +12,23 @@
 </template>
 
 <script>
-import {mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 export default {
-  name: 'tabview',
+  name: 'Tabview',
   computed: {
     ...mapGetters(['tags'])
   },
   watch: {
-    $route () {
+    $route() {
       this.addTags(this.$route)
     }
   },
-  created () {
+  created() {
     this.addTags(this.$route)
   },
   methods: {
     ...mapMutations(['addTags', 'delTag']),
-    handleClose (tag) {
+    handleClose(tag) {
       this.delTag(tag)
       if (this.isActive(tag)) {
         const lastTag = this.tags.splice(-1)[0]
@@ -41,7 +41,7 @@ export default {
       }
     //    this.dynamicTags.splice(this.dynamicTags.indexOf(tag), 1);
     },
-    isActive (tag) {
+    isActive(tag) {
       if (tag.name == this.$route.name) {
         return true
       }
